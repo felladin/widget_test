@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {  /* widget controller */  var c = this;}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>list_boxes</id>
+        <internal>false</internal>
+        <link/>
+        <name>List boxes</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	var me = gs.getUserID();
+	data.listresult = getListResult();
+	data.listpick = 'Hej';
+})();
+
+function getListResult() {
+	var toPush = '';
+	var topOrg = [];
+	var list = new GlideRecord('sys_user');
+	list.addActiveQuery();
+	list.setLimit(10);
+	list.query();
+	while(list.next()){
+		toPush = list.name.toString();
+		topOrg.push(toPush);
+	}
+	return topOrg;
+}]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-02-21 14:28:49</sys_created_on>
+        <sys_id>7a2975e3db9013002c5cd001cf961962</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>List boxes</sys_name>
+        <sys_package display_value="Widget testing" source="x_73933_widgets">83e831a3db5013002c5cd001cf9619f2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Widget testing">83e831a3db5013002c5cd001cf9619f2</sys_scope>
+        <sys_update_name>sp_widget_7a2975e3db9013002c5cd001cf961962</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-02-21 14:46:15</sys_updated_on>
+        <template><![CDATA[<div>
+<div class="box">
+  <div class="left01">
+    <!-- 
+    <select ng-model="data.listresult" ng-options="x as x.name for x in data.listresult"> 
+    -->
+    <select ng-model="data.listpick" ng-options="x for x in data.listresult" multiple>  
+      
+    </select>
+  </div>
+  <div class="right01">
+    
+  </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
